@@ -22,8 +22,8 @@ export default function BookDetails({ bookId }) {
     return (
       <div>
         <h2>{book.name}</h2>
-        <p>{book.genre}</p>
-        <p>{book.author.name}</p>
+        <p><span>Genre &nbsp; : </span>&nbsp;{book.genre}</p>
+        <p><span>Author : </span>&nbsp;{book.author.name}</p>
         <p>All Books by this author</p>
         <ul className="other-books">
           {book.author.books.map((cur, i) => (
