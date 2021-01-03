@@ -1,6 +1,9 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 
+// components
+import DeleteBook from "./DeleteBook";
+
 // queries
 import { getBook } from "../queries";
 
@@ -16,18 +19,25 @@ export default function BookDetails({ bookId }) {
     if (!bookId) return <p>No book selected</p>;
     if (loading) return <p>loading...</p>;
     if (error) return <p>Error while fetching</p>;
- 
-    const {book} = data;
+
+    const { book } = data;
 
     return (
       <div>
-        <h2>{book.name}</h2>
-        <p><span>Genre &nbsp; : </span>&nbsp;{book.genre}</p>
-        <p><span>Author : </span>&nbsp;{book.author.name}</p>
+        <div className="book-title">
+          <h2>{book.name}</h2>
+          <DeleteBook id={bookId} />
+        </div>
+        <p>
+          <span>Genre &nbsp; : </span>&nbsp;{book.genre}
+        </p>
+        <p>
+          <span>Author : </span>&nbsp;{book.author.name}
+        </p>
         <p>All Books by this author</p>
         <ul className="other-books">
           {book.author.books.map((cur, i) => (
-            <li key={i} >{cur.name}</li>
+            <li key={i}>{cur.name}</li>
           ))}
         </ul>
       </div>
