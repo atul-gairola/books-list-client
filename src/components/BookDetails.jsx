@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import { useQuery } from "@apollo/client";
 
 // components
@@ -8,6 +8,7 @@ import DeleteBook from "./DeleteBook";
 import { getBook } from "../queries";
 
 export default function BookDetails({ bookId }) {
+
   // queries
   const { data, loading, error } = useQuery(getBook, {
     variables: { id: bookId },
@@ -46,8 +47,8 @@ export default function BookDetails({ bookId }) {
 
   return (
     <div id="book-details">
-      <p>Output book details here</p>
-      <DisplayDetails />
+          <p>Output book details here</p>
+          <DisplayDetails />
     </div>
   );
 }
